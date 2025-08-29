@@ -68,7 +68,7 @@ function analyzeSalesData(data, options) {
         revenue: 0,
         profit: 0,
         sales_count: 0,
-    products_sold: {}
+        products_sold: {}
     }))
 
     // @TODO: Индексация продавцов и товаров для быстрого доступа
@@ -108,11 +108,12 @@ function analyzeSalesData(data, options) {
     // @TODO: Назначение премий на основе ранжирования
 
     sellerStats.forEach((seller, index) => {
-        seller.bonus = calculateBonus(index, total, seller);
-        seller.top_products = Object.entries(seller.products_sold)
-            .map(([sku, quantity]) => ({ sku, quantity }))
-            .sort((a, b) => b.quantity - a.quantity)
-            .slice(0, 10);
+    seller.bonus = calculateBonus(index, total, seller);
+
+    seller.top_products = Object.entries(seller.products_sold)
+        .map(([sku, quantity]) => ({ sku, quantity }))
+        .sort((a, b) => b.quantity - a.quantity)
+        .slice(0, 10);
     });
 
     // @TODO: Подготовка итоговой коллекции с нужными полями
